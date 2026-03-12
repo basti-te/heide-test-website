@@ -943,6 +943,88 @@
       .footer-links { flex-wrap: wrap; gap: 1.25rem; }
 
       .scroll-hint { display: none; }
+      .plan-viewer { height: 60vw; min-height: 280px; }
+      .plan-viewer-tall { height: 85vw; min-height: 340px; }
+      .lageplan-viewer { height: 60vw; min-height: 260px; }
+    }
+
+    /* ── PLANS / GRUNDRISSE ──────────────────────────────────── */
+    .plans-section { padding: 5rem 0; }
+    .plans-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+    .plan-tab {
+      padding: 0.55rem 1.3rem;
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: color 0.22s cubic-bezier(0.16,1,0.3,1),
+                  background 0.22s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.22s cubic-bezier(0.16,1,0.3,1);
+    }
+    .plan-tab:hover { color: var(--text); border-color: rgba(244,239,229,0.22); }
+    .plan-tab.active { background: var(--accent); border-color: var(--accent); color: #0C0C0B; font-weight: 500; }
+    .plan-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .plan-viewer {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #f5f3ef;
+      position: relative;
+      height: 600px;
+    }
+    .plan-viewer-tall {
+      height: 750px;
+    }
+    .plan-frame {
+      display: none;
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      inset: 0;
+    }
+    .plan-frame.active { display: block; }
+    .plan-download-row {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .plan-dl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .plan-dl-link:hover { color: var(--accent); }
+    .lageplan-wrap {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .lageplan-viewer {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #f5f3ef;
+      height: 560px;
+    }
+    .lageplan-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
   </style>
 </head>
@@ -965,6 +1047,7 @@
       <li><a href="#projekt">Projekt</a></li>
       <li><a href="#galerie">Galerie</a></li>
       <li><a href="#wohnungen">Wohnungen</a></li>
+      <li><a href="#grundrisse">Grundrisse</a></li>
       <li><a href="#lage">Lage</a></li>
     </ul>
     <a href="#kontakt" class="nav-cta">Jetzt anfragen</a>
@@ -976,7 +1059,7 @@
   <!-- ── HERO ── -->
   <section id="hero" aria-label="Hero">
     <iframe class="hero-video" id="hero-video"
-      src="https://www.youtube.com/embed/zydqlrO74ok?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1&modestbranding=1"
+      src="https://www.youtube.com/embed/tFibnkHhmUs?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1&modestbranding=1"
       frameborder="0" allow="autoplay; fullscreen"></iframe>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1213,6 +1296,76 @@
     </div>
   </section>
 
+  <!-- ── GRUNDRISSE ── -->
+  <section id="grundrisse" class="plans-section" aria-label="Grundrisse" style="background:var(--surface)">
+    <div class="section" style="max-width:1400px">
+      <span class="eyebrow reveal">Planung</span>
+      <h2 class="sec-title reveal" style="transition-delay:0.1s">Grundrisse —<br><em style="font-style:italic">Alle Ebenen</em></h2>
+      <p class="sec-body reveal" style="transition-delay:0.2s">Durchdachte Grundrisse für jede Etage — von den Gartenwohnungen im Erdgeschoss bis zum Penthouse im Staffelgeschoss.</p>
+      <div class="reveal" style="transition-delay:0.25s">
+        <div class="plans-tabs">
+          <button class="plan-tab active" onclick="showPlan('grundrisse','eg',this)">Erdgeschoss (EG)</button>
+          <button class="plan-tab" onclick="showPlan('grundrisse','og',this)">Obergeschoss (OG)</button>
+          <button class="plan-tab" onclick="showPlan('grundrisse','sg',this)">Staffelgeschoss (SG)</button>
+        </div>
+        <div class="plan-viewer" id="viewer-grundrisse">
+          <iframe id="plan-grundrisse-eg" class="plan-frame active" src="brand_assets/BA.1%20EG.pdf"></iframe>
+          <iframe id="plan-grundrisse-og" class="plan-frame" src="about:blank" data-src="brand_assets/BA.2%20OG.pdf"></iframe>
+          <iframe id="plan-grundrisse-sg" class="plan-frame" src="about:blank" data-src="brand_assets/BA.3%20SG.pdf"></iframe>
+        </div>
+        <div class="plan-download-row">
+          <a class="plan-dl-link" href="brand_assets/BA.1%20EG.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            EG herunterladen
+          </a>
+          <a class="plan-dl-link" href="brand_assets/BA.2%20OG.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            OG herunterladen
+          </a>
+          <a class="plan-dl-link" href="brand_assets/BA.3%20SG.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            SG herunterladen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SCHNITTE & ANSICHTEN ── -->
+  <section id="plaene" class="plans-section" aria-label="Schnitte und Ansichten" style="background:var(--bg)">
+    <div class="section" style="max-width:1400px">
+      <span class="eyebrow reveal">Architektur</span>
+      <h2 class="sec-title reveal" style="transition-delay:0.1s">Schnitte &<br><em style="font-style:italic">Ansichten</em></h2>
+      <p class="sec-body reveal" style="transition-delay:0.2s">Gebäudeschnitte und Fassadenansichten aus allen Himmelsrichtungen — die architektonische Qualität im Detail.</p>
+      <div class="reveal" style="transition-delay:0.25s">
+        <div class="plans-tabs">
+          <button class="plan-tab active" onclick="showPlan('plaene','schnitt',this)">Schnitt A-A & KG</button>
+          <button class="plan-tab" onclick="showPlan('plaene','nordost',this)">Ansichten Nord / Ost</button>
+          <button class="plan-tab" onclick="showPlan('plaene','suedwest',this)">Ansichten Süd / West</button>
+        </div>
+        <div class="plan-viewer plan-viewer-tall" id="viewer-plaene">
+          <iframe id="plan-plaene-schnitt" class="plan-frame active" src="brand_assets/BA.4%20Schnitt%20A_A%20_%20KG.pdf"></iframe>
+          <iframe id="plan-plaene-nordost" class="plan-frame" src="about:blank" data-src="brand_assets/BA.5%20Ansichten_Nord_Ost.pdf"></iframe>
+          <iframe id="plan-plaene-suedwest" class="plan-frame" src="about:blank" data-src="brand_assets/BA.6%20Ansichten_S%C3%BCd_West.pdf"></iframe>
+        </div>
+        <div class="plan-download-row">
+          <a class="plan-dl-link" href="brand_assets/BA.4%20Schnitt%20A_A%20_%20KG.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Schnitt herunterladen
+          </a>
+          <a class="plan-dl-link" href="brand_assets/BA.5%20Ansichten_Nord_Ost.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Ansichten Nord/Ost
+          </a>
+          <a class="plan-dl-link" href="brand_assets/BA.6%20Ansichten_S%C3%BCd_West.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Ansichten Süd/West
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── SUSTAINABILITY + VIDEO ── -->
   <div class="sustain-wrap" role="region" aria-label="Nachhaltigkeit">
     <div class="sustain-glow"></div>
@@ -1249,7 +1402,7 @@
       <div class="reveal" style="transition-delay:0.22s">
         <div class="video-side">
           <iframe
-            src="https://www.youtube.com/embed/PsrIXhi4cpA?autoplay=1&mute=1&loop=1&playlist=PsrIXhi4cpA&controls=0&showinfo=0&rel=0&playsinline=1&modestbranding=1"
+            src="https://www.youtube.com/embed/zydqlrO74ok?autoplay=1&mute=1&loop=1&playlist=zydqlrO74ok&controls=0&showinfo=0&rel=0&playsinline=1&modestbranding=1"
             frameborder="0" allow="autoplay; fullscreen"
             style="position:absolute;top:50%;left:50%;width:300%;height:300%;transform:translate(-50%,-50%);border:none;pointer-events:none;"></iframe>
           <div class="video-side-overlay"></div>
@@ -1319,6 +1472,21 @@
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Lageplan -->
+      <div class="lageplan-wrap reveal">
+        <span class="eyebrow" style="margin-bottom:1rem;display:block">Lageplan</span>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;letter-spacing:-0.02em;margin-bottom:1.25rem;color:var(--text)">Das Grundstück <em style="font-style:italic">im Überblick</em></h3>
+        <div class="lageplan-viewer">
+          <iframe class="lageplan-frame" src="brand_assets/BA.07%20LP.pdf"></iframe>
+        </div>
+        <div class="plan-download-row" style="margin-top:0.85rem">
+          <a class="plan-dl-link" href="brand_assets/BA.07%20LP.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Lageplan herunterladen
+          </a>
         </div>
       </div>
     </div>
@@ -1430,7 +1598,7 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // ── HERO VIDEO CYCLE (YouTube IFrame API) ────────────────
-    const ytClips = ['zydqlrO74ok', 'tFibnkHhmUs', 'PsrIXhi4cpA'];
+    const ytClips = ['tFibnkHhmUs', 'PsrIXhi4cpA'];
     let ytClipIdx = 0;
     let ytPlayer;
 
@@ -1452,6 +1620,19 @@
     };
 
     // ── CONTACT FORM ─────────────────────────────────────────
+    // ── PLAN TAB SWITCHER ─────────────────────────────────────
+    function showPlan(group, tab, btn) {
+      btn.closest('.plans-tabs').querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      const viewer = document.getElementById('viewer-' + group);
+      viewer.querySelectorAll('.plan-frame').forEach(f => f.classList.remove('active'));
+      const frame = document.getElementById('plan-' + group + '-' + tab);
+      if (frame.dataset.src && frame.src !== frame.dataset.src) {
+        frame.src = frame.dataset.src;
+      }
+      frame.classList.add('active');
+    }
+
     function handleSubmit(e) {
       e.preventDefault();
       document.getElementById('contact-form').style.display = 'none';
