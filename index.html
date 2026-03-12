@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heide 14 – 10 exklusive Eigentumswohnungen in Münster. Modernes Wohnen in begehrter Lage an der Heidestraße 14, 48167 Münster.">
+  <title>Heide 14 — Eigentumswohnungen · Münster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #0C0C0B;
+      --surface:      #141413;
+      --surface-2:    #1D1D1B;
+      --text:         #F4EFE5;
+      --muted:        #857E71;
+      --accent:       #BF9B6A;
+      --accent-dim:   rgba(191,155,106,0.12);
+      --accent-border:rgba(191,155,106,0.28);
+      --border:       rgba(244,239,229,0.07);
+      --green:        #6B7A5A;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    /* Grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+
+    /* ── NAVIGATION ───────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 600;
+      padding: 1.75rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: padding 0.5s cubic-bezier(0.16,1,0.3,1),
+                  background 0.5s, backdrop-filter 0.5s,
+                  border-color 0.5s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      padding: 1.1rem 2.5rem;
+      background: rgba(12,12,11,0.9);
+      backdrop-filter: blur(18px) saturate(1.5);
+      border-bottom-color: var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 0.65rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      display: inline-block;
+    }
+    .nav-cta:hover {
+      background: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ── MOBILE MENU ──────────────────────────────────────── */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 590;
+      background: rgba(12,12,11,0.97);
+      backdrop-filter: blur(24px);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.25rem;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 300;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.25s;
+    }
+    #mobile-menu a:hover { color: var(--accent); }
+    #menu-close {
+      position: absolute;
+      top: 1.75rem; right: 2rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s;
+    }
+    #menu-close:hover { color: var(--text); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(12,12,11,0.15) 0%,
+        rgba(12,12,11,0.05) 25%,
+        rgba(12,12,11,0.4)  65%,
+        rgba(12,12,11,0.97) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 0 2.5rem 5.5rem;
+      width: 100%;
+      max-width: 940px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-title {
+      font-size: clamp(3.2rem, 9.5vw, 7.5rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 0.92;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp 1s 0.42s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      font-weight: 300;
+      color: rgba(244,239,229,0.78);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+      max-width: 460px;
+      line-height: 1.65;
+      margin-bottom: 2.75rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.9s 0.65s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.9s 0.85s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.4s forwards;
+    }
+    .scroll-hint span {
+      writing-mode: vertical-rl;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--accent) 0%, transparent 100%);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+
+    /* ── BUTTONS ──────────────────────────────────────────── */
+    .btn-primary {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 0.95rem 2.4rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(191,155,106,0.22);
+    }
+    .btn-outline {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      background: transparent;
+      padding: 0.95rem 2.4rem;
+      border: 1px solid var(--accent-border);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .btn-outline:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+    }
+
+    /* ── STATS STRIP ──────────────────────────────────────── */
+    .stats-strip {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 2.25rem 1.5rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTION BASE ─────────────────────────────────────── */
+    .section {
+      padding: 7rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .sec-title {
+      font-size: clamp(2.4rem, 4.5vw, 3.75rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .sec-body {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.8;
+    }
+
+    /* ── ABOUT ────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: -2.5rem;
+      right: -2rem;
+      width: 52%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border: 3px solid var(--bg);
+    }
+    .about-badge {
+      position: absolute;
+      top: 1.75rem;
+      left: -0.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.9rem 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .about-metrics {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.75rem;
+      flex-wrap: wrap;
+    }
+    .metric-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+    }
+    .metric-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      display: block;
+    }
+    .metric-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+    }
+
+    /* ── GALLERY ──────────────────────────────────────────── */
+    .gallery-header {
+      padding: 6rem 2.5rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+    }
+    .g-item {
+      overflow: hidden;
+      background: var(--surface);
+      position: relative;
+    }
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .g-item:hover img { transform: scale(1.05); }
+    .g-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,12,11,0.55) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .g-item:hover .g-item-overlay { opacity: 1; }
+
+    .g1 { grid-column: 1/8;  min-height: 540px; }
+    .g2 { grid-column: 8/13; }
+    .g3 { grid-column: 8/13; }
+    .g4 { grid-column: 1/5;  min-height: 280px; }
+    .g5 { grid-column: 5/9;  min-height: 280px; }
+    .g6 { grid-column: 9/13; min-height: 280px; }
+    .g7 { grid-column: 1/7;  min-height: 320px; }
+    .g8 { grid-column: 7/13; min-height: 320px; }
+
+    /* ── FEATURES ─────────────────────────────────────────── */
+    .features-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .feat-item {
+      padding: 3.5rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .feat-item:nth-child(3n) { border-right: none; }
+    .feat-item:hover { background: rgba(255,255,255,0.018); }
+    .feat-icon {
+      width: 38px;
+      height: 38px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .feat-title {
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 0.65rem;
+      color: var(--text);
+    }
+    .feat-text {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    /* ── APARTMENTS ───────────────────────────────────────── */
+    .apt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 3.5rem;
+    }
+    .apt-card {
+      background: var(--surface);
+      padding: 2.75rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s, transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.4s;
+    }
+    .apt-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .apt-card:hover {
+      background: var(--surface-2);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 55px rgba(0,0,0,0.38);
+    }
+    .apt-card:hover::after { transform: scaleX(1); }
+    .apt-floor {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .apt-name {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .apt-size {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.75rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .apt-price {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.75rem;
+    }
+    .apt-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.75rem;
+    }
+    .apt-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .apt-list li::before {
+      content: '—';
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+    .apt-cta {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s;
+    }
+    .apt-cta:hover { gap: 0.85rem; }
+
+    /* ── VIDEO / SUSTAIN ──────────────────────────────────── */
+    .sustain-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .sustain-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(107,122,90,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sustain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5.5rem;
+      align-items: center;
+    }
+    .sustain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 2.5rem;
+    }
+    .sustain-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sustain-item:first-child { border-top: 1px solid var(--border); }
+    .sustain-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--accent);
+      opacity: 0.45;
+      min-width: 2.25rem;
+      line-height: 1.1;
+    }
+    .sustain-ttl {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .sustain-txt {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .video-side {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .video-side video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-side-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,12,11,0.55) 0%, transparent 55%);
+    }
+
+    /* ── LOCATION ─────────────────────────────────────────── */
+    .location-wrap { background: var(--bg); }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+      margin-top: 3.5rem;
+      align-items: start;
+    }
+    .map-box {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(100%) invert(90%) contrast(85%) brightness(0.9);
+    }
+    .loc-address {
+      margin-top: 0.85rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .loc-intro {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .loc-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .loc-point {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .loc-point:first-child { border-top: 1px solid var(--border); }
+    .loc-dist {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--accent);
+      min-width: 72px;
+      text-align: right;
+      line-height: 1;
+    }
+    .loc-name { font-size: 0.9rem; color: var(--text); }
+    .loc-type { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* ── CONTACT ──────────────────────────────────────────── */
+    .contact-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 60% at 25% 55%, rgba(191,155,106,0.055) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .ci-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .ci-value {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+    .form-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--muted); opacity: 0.45; }
+    textarea.form-input { resize: vertical; min-height: 110px; }
+    select.form-input {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23857E71' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.75rem;
+      cursor: pointer;
+    }
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .form-submit:hover {
+      background: var(--text);
+      transform: translateY(-1px);
+    }
+    .form-success {
+      display: none;
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      background: rgba(107,122,90,0.12);
+      border: 1px solid rgba(107,122,90,0.3);
+      color: #7A8C6E;
+      font-size: 0.875rem;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.75rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 0.75rem; color: var(--muted); }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform-origin: top; transform: scaleY(1); opacity: 1; }
+      50%       { transform-origin: top; transform: scaleY(0.6); opacity: 0.4; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #nav { padding: 1.35rem 1.5rem; }
+      #nav.scrolled { padding: 1rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-content { padding: 0 1.5rem 4.5rem; }
+
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+
+      .section { padding: 4.5rem 1.5rem; }
+      .gallery-header { padding: 4rem 1.5rem 2rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-accent { display: none; }
+
+      .g1 { grid-column: 1/13; min-height: 280px; }
+      .g2 { grid-column: 1/7; min-height: 200px; }
+      .g3 { grid-column: 7/13; min-height: 200px; }
+      .g4, .g5, .g6 { grid-column: span 4; min-height: 180px; }
+      .g7 { grid-column: 1/13; }
+      .g8 { grid-column: 1/13; }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .feat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .feat-item:last-child { border-bottom: none; }
+
+      .apt-grid { grid-template-columns: 1fr; }
+
+      .sustain-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .video-side { aspect-ratio: 16/9; }
+
+      .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-links { flex-wrap: wrap; gap: 1.25rem; }
+
+      .scroll-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── MOBILE MENU ── -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <button id="menu-close" onclick="closeMobileMenu()" aria-label="Menü schließen">✕</button>
+    <a href="#projekt"   onclick="closeMobileMenu()">Projekt</a>
+    <a href="#galerie"   onclick="closeMobileMenu()">Galerie</a>
+    <a href="#wohnungen" onclick="closeMobileMenu()">Wohnungen</a>
+    <a href="#lage"      onclick="closeMobileMenu()">Lage</a>
+    <a href="#kontakt"   onclick="closeMobileMenu()">Kontakt</a>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="#" class="nav-logo" aria-label="Heide 14 — Startseite">HEIDE<span>14</span></a>
+    <ul class="nav-links">
+      <li><a href="#projekt">Projekt</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#wohnungen">Wohnungen</a></li>
+      <li><a href="#lage">Lage</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">Jetzt anfragen</a>
+    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero" aria-label="Hero">
+    <video class="hero-video" autoplay muted playsinline id="hero-video">
+      <source src="brand_assets/Clip 3 (1).mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Heidestraße 14 · 48167 Münster</p>
+      <h1 class="hero-title">
+        Ihr neues<br>
+        <em>Zuhause</em><br>
+        in Münster
+      </h1>
+      <p class="hero-sub">10 Eigentumswohnungen in modernem Neubau — nachhaltig, hochwertig, zukunftsorientiert. Geplante Fertigstellung 2026.</p>
+      <div class="hero-actions">
+        <a href="#wohnungen" class="btn-primary">Wohnungen entdecken</a>
+        <a href="#kontakt"   class="btn-outline">Beratungsgespräch</a>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scrollen</span>
+    </div>
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip" role="region" aria-label="Projektkennzahlen">
+    <div class="stat-item reveal">
+      <span class="stat-num">10</span>
+      <span class="stat-label">Eigentumswohnungen</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.1s">
+      <span class="stat-num">3+</span>
+      <span class="stat-label">Etagen inkl. Penthouse</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.2s">
+      <span class="stat-num">2026</span>
+      <span class="stat-label">Fertigstellung geplant</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:0.3s">
+      <span class="stat-num">A+</span>
+      <span class="stat-label">Energieeffizienzklasse</span>
+    </div>
+  </div>
+
+  <!-- ── ABOUT / PROJECT ── -->
+  <section id="projekt" class="section" aria-label="Das Projekt">
+    <div class="about-grid">
+
+      <div class="about-img-wrap reveal">
+        <img src="brand_assets/Ansicht 2.png" alt="Heide 14 – Frontansicht des Gebäudes" class="about-img-main">
+        <img src="brand_assets/Ansicht 5a.png" alt="Heide 14 – Gartenseite" class="about-img-accent">
+        <div class="about-badge">Neubau 2026</div>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.18s">
+        <span class="eyebrow">Das Projekt</span>
+        <h2 class="sec-title">Architektur,<br><em style="font-style:italic">die begeistert.</em></h2>
+        <p class="sec-body">
+          An der Heidestraße 14 in Münster entsteht ein außergewöhnliches Wohnprojekt: 10 großzügige Eigentumswohnungen in einem dreigeschossigen Neubau mit exklusiver Penthouse-Etage und Dachterrasse.
+        </p>
+        <p class="sec-body" style="margin-top:1rem">
+          Die Architektur verbindet klare, zeitgenössische Formen mit hochwertigen Materialien — heller Klinker, raumhohe Fensterfronten, Balkone und eine durchdachte Grundrissplanung. Ein Gebäude, das in seiner Umgebung Maßstäbe setzt.
+        </p>
+        <div class="about-metrics">
+          <div>
+            <span class="metric-val">2–4</span>
+            <span class="metric-label">Zimmer</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div>
+            <span class="metric-val">55–120</span>
+            <span class="metric-label">m² Wohnfläche</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div>
+            <span class="metric-val">EG–DG</span>
+            <span class="metric-label">Alle Etagen</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── GALLERY ── -->
+  <section id="galerie" aria-label="Architekturvisualisierungen">
+    <div class="gallery-header">
+      <span class="eyebrow reveal">Architektur &amp; Visualisierungen</span>
+      <h2 class="sec-title reveal" style="transition-delay:0.12s">Das Gebäude von<br><em style="font-style:italic">allen Seiten</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g1">
+        <img src="brand_assets/Ansicht 2.png" alt="Frontfassade mit Balkonen">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g2">
+        <img src="brand_assets/Ansicht 7.png" alt="Straßenansicht">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g3">
+        <img src="brand_assets/Ansicht 4.png" alt="Außenansicht mit Parkplatz">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g4">
+        <img src="brand_assets/Ansicht 5.png" alt="Gartenansicht">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g5">
+        <img src="brand_assets/Ansicht 5a.png" alt="Grünfläche">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g6">
+        <img src="brand_assets/Ansicht 3a.png" alt="Luftaufnahme">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g7">
+        <img src="brand_assets/Ansicht 1.png" alt="Vogelperspektive mit Solaranlage">
+        <div class="g-item-overlay"></div>
+      </div>
+      <div class="g-item g8">
+        <img src="brand_assets/Scene 3_1.png" alt="Gesamtansicht">
+        <div class="g-item-overlay"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <div class="features-wrap" role="region" aria-label="Ausstattungsmerkmale">
+    <div class="features-grid">
+      <div class="feat-item reveal">
+        <svg class="feat-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+        </svg>
+        <h3 class="feat-title">Photovoltaikanlage</h3>
+        <p class="feat-text">Großflächige Solaranlage auf dem Dach — saubere Energiegewinnung für alle Wohneinheiten und spürbar niedrigere Betriebskosten.</p>
+      </div>
+      <div class="feat-item reveal" style="transition-delay:0.13s">
+        <svg class="feat-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+        </svg>
+        <h3 class="feat-title">Exklusive Dachterrasse</h3>
+        <p class="feat-text">Die Penthouse-Etage bietet eine private Dachterrasse mit Weitblick über das grüne Münster — ein einzigartiger Außenbereich über den Dächern der Stadt.</p>
+      </div>
+      <div class="feat-item reveal" style="transition-delay:0.26s">
+        <svg class="feat-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+        </svg>
+        <h3 class="feat-title">Massivbau & Klinker</h3>
+        <p class="feat-text">Heller Klinker, massive Bauweise und hochwertige Verarbeitung — gebaut für Generationen mit zeitlosem Erscheinungsbild.</p>
+      </div>
+      <div class="feat-item reveal">
+        <svg class="feat-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+        </svg>
+        <h3 class="feat-title">Stellplätze & E-Laden</h3>
+        <p class="feat-text">Ausreichend Stellplätze auf dem Grundstück, vollständig vorbereitet für die Nachrüstung von Ladepunkten für Elektrofahrzeuge.</p>
+      </div>
+      <div class="feat-item reveal" style="transition-delay:0.13s">
+        <svg class="feat-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/>
+        </svg>
+        <h3 class="feat-title">KfW-Neubaustandard</h3>
+        <p class="feat-text">Energieeffizienter Neubau nach GEG — attraktive Förderung durch KfW-Programme ermöglicht besonders günstige Finanzierungskonditionen.</p>
+      </div>
+      <div class="feat-item reveal" style="transition-delay:0.26s">
+        <svg class="feat-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/>
+        </svg>
+        <h3 class="feat-title">Grün & Natur pur</h3>
+        <p class="feat-text">Eingebettet in ein grünes Umfeld mit privatem Garten, Bäumen und naturnaher Atmosphäre — Lebensqualität direkt vor Ihrer Haustür.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── APARTMENTS ── -->
+  <section id="wohnungen" class="section" aria-label="Wohnungsangebot">
+    <span class="eyebrow reveal">Wohnungsangebot</span>
+    <h2 class="sec-title reveal" style="transition-delay:0.1s">10 Wohnungen —<br><em style="font-style:italic">Ihre Auswahl</em></h2>
+    <p class="sec-body reveal" style="transition-delay:0.2s">Von der lichtdurchfluteten Gartenwohnung bis zum exklusiven Penthouse mit Dachterrasse — jede Einheit ist individuell geplant und hochwertig ausgestattet.</p>
+
+    <div class="apt-grid">
+      <div class="apt-card reveal">
+        <p class="apt-floor">Erdgeschoss</p>
+        <h3 class="apt-name">Gartenwohnungen</h3>
+        <div class="apt-size">55 – 80 m²</div>
+        <p class="apt-price">Preis auf Anfrage</p>
+        <ul class="apt-list">
+          <li>Direkte Gartenanbindung</li>
+          <li>2–3 Zimmer</li>
+          <li>Barrierefreier Zugang möglich</li>
+          <li>Terrasse & eigener Garten</li>
+        </ul>
+        <a href="#kontakt" class="apt-cta">Informationen anfragen <span>→</span></a>
+      </div>
+
+      <div class="apt-card reveal" style="transition-delay:0.12s">
+        <p class="apt-floor">1. Obergeschoss</p>
+        <h3 class="apt-name">Wohnungen OG 1</h3>
+        <div class="apt-size">70 – 95 m²</div>
+        <p class="apt-price">Preis auf Anfrage</p>
+        <ul class="apt-list">
+          <li>Großzügiger Balkon</li>
+          <li>3 Zimmer</li>
+          <li>Offene Wohnküche</li>
+          <li>Hochwertige Ausstattung</li>
+        </ul>
+        <a href="#kontakt" class="apt-cta">Informationen anfragen <span>→</span></a>
+      </div>
+
+      <div class="apt-card reveal" style="transition-delay:0.08s">
+        <p class="apt-floor">2. Obergeschoss</p>
+        <h3 class="apt-name">Wohnungen OG 2</h3>
+        <div class="apt-size">75 – 100 m²</div>
+        <p class="apt-price">Preis auf Anfrage</p>
+        <ul class="apt-list">
+          <li>Balkon oder Loggia</li>
+          <li>3–4 Zimmer</li>
+          <li>Freier Blick ins Grüne</li>
+          <li>Lichtdurchflutet</li>
+        </ul>
+        <a href="#kontakt" class="apt-cta">Informationen anfragen <span>→</span></a>
+      </div>
+
+      <div class="apt-card reveal" style="transition-delay:0.2s">
+        <p class="apt-floor" style="color:var(--accent)">Dachgeschoss — Penthouse</p>
+        <h3 class="apt-name">Penthouse</h3>
+        <div class="apt-size">100 – 120 m²</div>
+        <p class="apt-price">Preis auf Anfrage</p>
+        <ul class="apt-list">
+          <li>Exklusive Dachterrasse</li>
+          <li>4 Zimmer</li>
+          <li>Panoramablick über Münster</li>
+          <li>Höchste Ausstattungsqualität</li>
+        </ul>
+        <a href="#kontakt" class="apt-cta">Informationen anfragen <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SUSTAINABILITY + VIDEO ── -->
+  <div class="sustain-wrap" role="region" aria-label="Nachhaltigkeit">
+    <div class="sustain-glow"></div>
+    <div class="section sustain-grid" style="max-width:1400px">
+      <div class="reveal">
+        <span class="eyebrow">Nachhaltigkeit</span>
+        <h2 class="sec-title">Gebaut für<br><em style="font-style:italic">die Zukunft</em></h2>
+        <p class="sec-body">Heide 14 vereint nachhaltige Bauweise mit modernster Energietechnik — für ein angenehmes Wohnen bei niedrigen Betriebskosten.</p>
+        <ul class="sustain-list">
+          <li class="sustain-item">
+            <span class="sustain-num">01</span>
+            <div>
+              <p class="sustain-ttl">Photovoltaik auf dem Dach</p>
+              <p class="sustain-txt">Großflächige Solaranlage erzeugt sauberen Strom — für alle Bewohner nutzbar und senkt die Nebenkosten spürbar.</p>
+            </div>
+          </li>
+          <li class="sustain-item">
+            <span class="sustain-num">02</span>
+            <div>
+              <p class="sustain-ttl">Energieeffizienter Massivbau</p>
+              <p class="sustain-txt">Optimale Dämmung, dreifach verglaste Fenster und moderne Haustechnik sorgen ganzjährig für behagliche Temperaturen.</p>
+            </div>
+          </li>
+          <li class="sustain-item">
+            <span class="sustain-num">03</span>
+            <div>
+              <p class="sustain-ttl">E-Mobilitätsinfrastruktur</p>
+              <p class="sustain-txt">Alle Stellplätze sind vorbereitet für die Nachrüstung mit Ladepunkten — zukunftssicher und nachhaltig mobil.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.22s">
+        <div class="video-side">
+          <video autoplay muted loop playsinline>
+            <source src="brand_assets/Clip 5 (1).mp4" type="video/mp4">
+          </video>
+          <div class="video-side-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LOCATION ── -->
+  <section id="lage" class="location-wrap" aria-label="Lage und Standort">
+    <div class="section" style="max-width:1400px">
+      <span class="eyebrow reveal">Standort</span>
+      <h2 class="sec-title reveal" style="transition-delay:0.1s">Münster-Süd —<br><em style="font-style:italic">beste Lage</em></h2>
+      <div class="location-grid">
+        <div class="reveal">
+          <div class="map-box">
+            <iframe
+              src="https://maps.google.com/maps?q=Heidestra%C3%9Fe+14+48167+M%C3%BCnster&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              title="Karte: Heidestraße 14, 48167 Münster"
+              loading="lazy">
+            </iframe>
+          </div>
+          <p class="loc-address">Heidestraße 14 · 48167 Münster</p>
+        </div>
+        <div class="reveal" style="transition-delay:0.18s">
+          <p class="loc-intro">
+            Die Heidestraße 14 liegt im begehrten Münster-Süd — einem der ruhigsten und grünsten Wohngebiete der Stadt. Hervorragend angebunden an das Stadtzentrum, den Hauptbahnhof und alle Einrichtungen des täglichen Lebens.
+          </p>
+          <ul class="loc-points">
+            <li class="loc-point">
+              <span class="loc-dist">~ 5 km</span>
+              <div>
+                <p class="loc-name">Münster Innenstadt</p>
+                <p class="loc-type">Einkauf, Gastronomie & Kultur</p>
+              </div>
+            </li>
+            <li class="loc-point">
+              <span class="loc-dist">~ 3 km</span>
+              <div>
+                <p class="loc-name">Hauptbahnhof Münster</p>
+                <p class="loc-type">Öffentlicher Nahverkehr & Fernzug</p>
+              </div>
+            </li>
+            <li class="loc-point">
+              <span class="loc-dist">~ 1 km</span>
+              <div>
+                <p class="loc-name">Schulen & Kindertagesstätten</p>
+                <p class="loc-type">Bildungseinrichtungen</p>
+              </div>
+            </li>
+            <li class="loc-point">
+              <span class="loc-dist">~ 0,5 km</span>
+              <div>
+                <p class="loc-name">Nahversorgung</p>
+                <p class="loc-type">Supermarkt & Einkauf des täglichen Bedarfs</p>
+              </div>
+            </li>
+            <li class="loc-point">
+              <span class="loc-dist">Direkt</span>
+              <div>
+                <p class="loc-name">Grünflächen & Parks</p>
+                <p class="loc-type">Erholung & Natur</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="kontakt" class="contact-wrap" aria-label="Kontaktformular">
+    <div class="contact-glow"></div>
+    <div class="section" style="max-width:1400px">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">Kontakt & Beratung</span>
+          <h2 class="sec-title">Interesse?<br><em style="font-style:italic">Sprechen wir.</em></h2>
+          <p class="sec-body">Wir beraten Sie persönlich und unverbindlich zu allen Fragen rund um Heide 14 — Wohnungsauswahl, Ausstattung, Finanzierung und Fertigstellung.</p>
+          <div class="contact-info">
+            <div>
+              <p class="ci-label">Projektadresse</p>
+              <p class="ci-value">Heidestraße 14<br>48167 Münster</p>
+            </div>
+            <div>
+              <p class="ci-label">Beratungszeiten</p>
+              <p class="ci-value">Montag – Freitag<br>9:00 – 18:00 Uhr</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay:0.18s">
+          <form id="contact-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="f-vorname">Vorname</label>
+                <input class="form-input" type="text" id="f-vorname" name="vorname" placeholder="Max" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-nachname">Nachname</label>
+                <input class="form-input" type="text" id="f-nachname" name="nachname" placeholder="Mustermann" required autocomplete="family-name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-email">E-Mail-Adresse</label>
+              <input class="form-input" type="email" id="f-email" name="email" placeholder="max@beispiel.de" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-telefon">Telefon <span style="opacity:0.5">(optional)</span></label>
+              <input class="form-input" type="tel" id="f-telefon" name="telefon" placeholder="+49 251 ..." autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-interesse">Interesse an</label>
+              <select class="form-input" id="f-interesse" name="interesse">
+                <option value="">Bitte auswählen …</option>
+                <option value="eg">Erdgeschoss – Gartenwohnung</option>
+                <option value="og1">1. Obergeschoss</option>
+                <option value="og2">2. Obergeschoss</option>
+                <option value="dg">Penthouse – Dachgeschoss</option>
+                <option value="info">Allgemeine Information</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-nachricht">Nachricht</label>
+              <textarea class="form-input" id="f-nachricht" name="nachricht" placeholder="Ihre Fragen oder Anmerkungen …"></textarea>
+            </div>
+            <button type="submit" class="form-submit">Anfrage absenden</button>
+          </form>
+          <div class="form-success" id="form-success" role="status">
+            Vielen Dank für Ihre Anfrage! Wir melden uns zeitnah bei Ihnen.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">HEIDE<span>14</span></div>
+    <p class="footer-copy">Heidestraße 14 · 48167 Münster · &copy; 2026</p>
+    <ul class="footer-links">
+      <li><a href="#">Impressum</a></li>
+      <li><a href="#">Datenschutz</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // ── NAV SCROLL ──────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── MOBILE MENU ─────────────────────────────────────────
+    function openMobileMenu() {
+      document.getElementById('mobile-menu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── INTERSECTION REVEAL ──────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── HERO VIDEO CYCLE ─────────────────────────────────────
+    const heroVideo = document.getElementById('hero-video');
+    const clips = [
+      'brand_assets/Clip 3 (1).mp4',
+      'brand_assets/Clip 4 (1).mp4',
+      'brand_assets/Clip 5 (1).mp4',
+    ];
+    let clipIdx = 0;
+    if (heroVideo) {
+      heroVideo.addEventListener('ended', () => {
+        clipIdx = (clipIdx + 1) % clips.length;
+        heroVideo.src = clips[clipIdx];
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      });
+    }
+
+    // ── CONTACT FORM ─────────────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
