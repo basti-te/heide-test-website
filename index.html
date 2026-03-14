@@ -479,9 +479,8 @@
     .g1 { grid-column: 1/8;  min-height: 540px; }
     .g2 { grid-column: 8/13; }
     .g3 { grid-column: 8/13; }
-    .g4 { grid-column: 1/5;  min-height: 280px; }
-    .g5 { grid-column: 5/9;  min-height: 280px; }
-    .g6 { grid-column: 9/13; min-height: 280px; }
+    .g5 { grid-column: 1/8;  min-height: 280px; }
+    .g6 { grid-column: 8/13; min-height: 280px; }
     .g7 { grid-column: 1/7;  min-height: 320px; }
     .g8 { grid-column: 7/13; min-height: 320px; }
 
@@ -1161,10 +1160,6 @@
         <img src="brand_assets/Ansicht 4.png" alt="Außenansicht mit Parkplatz">
         <div class="g-item-overlay"></div>
       </div>
-      <div class="g-item g4">
-        <img src="brand_assets/Ansicht 5.png" alt="Gartenansicht">
-        <div class="g-item-overlay"></div>
-      </div>
       <div class="g-item g5">
         <img src="brand_assets/Ansicht 5a.png" alt="Grünfläche">
         <div class="g-item-overlay"></div>
@@ -1634,10 +1629,32 @@
       frame.classList.add('active');
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
+      const form = document.getElementById('contact-form');
+      const btn  = form.querySelector('button[type="submit"]');
+      const orig = btn.textContent;
+      btn.textContent = 'Wird gesendet …';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/DEIN_FORM_ID', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          btn.textContent = orig;
+          btn.disabled = false;
+          alert('Fehler beim Senden. Bitte versuche es erneut.');
+        }
+      } catch {
+        btn.textContent = orig;
+        btn.disabled = false;
+        alert('Netzwerkfehler. Bitte versuche es erneut.');
+      }
     }
   </script>
 
