@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung — Heide 14</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:            #0C0C0B;
+      --surface:       #141413;
+      --surface-2:     #1D1D1B;
+      --text:          #F4EFE5;
+      --muted:         #857E71;
+      --accent:        #BF9B6A;
+      --accent-dim:    rgba(191,155,106,0.12);
+      --accent-border: rgba(191,155,106,0.28);
+      --border:        rgba(244,239,229,0.07);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; line-height: 1.1; letter-spacing: -0.025em; }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 600;
+      padding: 1.75rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(12,12,11,0.92);
+      backdrop-filter: blur(18px) saturate(1.5);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-back svg { transition: transform 0.2s; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 10rem 2.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(191,155,106,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-header-inner { max-width: 800px; margin: 0 auto; }
+    .page-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .page-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .page-subtitle { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── TOC ── */
+    .toc-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 0;
+    }
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent-border);
+      border-radius: 0.5rem;
+      padding: 1.5rem 1.75rem;
+    }
+    .toc-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .toc-list a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .toc-list a::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 1px;
+      background: var(--accent-border);
+      flex-shrink: 0;
+    }
+    .toc-list a:hover { color: var(--accent); }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 8rem;
+    }
+
+    .ds-section {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px;
+    }
+    .ds-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .ds-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .ds-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .ds-subheading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .ds-body {
+      font-size: 0.9rem;
+      color: rgba(244,239,229,0.8);
+      line-height: 1.82;
+    }
+    .ds-body p { margin-bottom: 1rem; }
+    .ds-body p:last-child { margin-bottom: 0; }
+    .ds-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(191,155,106,0.4);
+      transition: text-decoration-color 0.2s;
+    }
+    .ds-body a:hover { text-decoration-color: var(--accent); }
+
+    .ds-body ul {
+      list-style: none;
+      margin: 0.75rem 0 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .ds-body ul li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+    .ds-body ul li::before {
+      content: '—';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    .ds-callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent-border);
+      border-radius: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: rgba(244,239,229,0.75);
+    }
+
+    .ds-highlight {
+      background: var(--surface-2);
+      border-radius: 0.5rem;
+      padding: 1.5rem 1.75rem;
+      margin: 1.25rem 0;
+    }
+    .ds-highlight .key {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .ds-highlight .val {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .uppercase-block {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(244,239,229,0.7);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text); }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 0.78rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      #nav { padding: 1.2rem 1.25rem; }
+      .page-header { padding: 8rem 1.25rem 3rem; }
+      .toc-wrap { padding: 2rem 1.25rem 0; }
+      .content-wrap { padding: 3rem 1.25rem 6rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .footer-links { flex-wrap: wrap; gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">HEIDE<span>14</span></a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 18 9 12 15 6"/></svg>
+      Zurück zur Website
+    </a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-inner">
+      <span class="page-eyebrow">Rechtliches</span>
+      <h1 class="page-title">Datenschutz&shy;erklärung</h1>
+      <p class="page-subtitle">Informationen zum Umgang mit Ihren personenbezogenen Daten</p>
+    </div>
+  </header>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc-wrap">
+    <div class="toc">
+      <p class="toc-title">Inhalt</p>
+      <ul class="toc-list">
+        <li><a href="#s1">1. Datenschutz auf einen Blick</a></li>
+        <li><a href="#s2">2. Hosting</a></li>
+        <li><a href="#s3">3. Allgemeine Hinweise und Pflichtinformationen</a></li>
+        <li><a href="#s4">4. Datenerfassung auf dieser Website</a></li>
+        <li><a href="#s5">5. Plugins und Tools</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content-wrap">
+
+    <!-- 1 -->
+    <section id="s1" class="ds-section">
+      <p class="ds-num">01</p>
+      <h2 class="ds-heading">Datenschutz auf einen Blick</h2>
+
+      <h3 class="ds-subheading">Allgemeine Hinweise</h3>
+      <div class="ds-body">
+        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
+      </div>
+
+      <h3 class="ds-subheading">Datenerfassung auf dieser Website</h3>
+      <div class="ds-body">
+        <p><strong style="font-weight:500;color:var(--text)">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
+        <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.</p>
+
+        <p><strong style="font-weight:500;color:var(--text)">Wie erfassen wir Ihre Daten?</strong></p>
+        <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben.</p>
+        <p>Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.</p>
+
+        <p><strong style="font-weight:500;color:var(--text)">Wofür nutzen wir Ihre Daten?</strong></p>
+        <p>Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.</p>
+
+        <p><strong style="font-weight:500;color:var(--text)">Welche Rechte haben Sie bezüglich Ihrer Daten?</strong></p>
+        <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="s2" class="ds-section">
+      <p class="ds-num">02</p>
+      <h2 class="ds-heading">Hosting</h2>
+
+      <h3 class="ds-subheading">WIX</h3>
+      <div class="ds-body">
+        <p>Anbieter ist die Wix.com Ltd., 40 Namal Tel Aviv St., Tel Aviv 6350671, Israel (nachfolgend „WIX").</p>
+        <p>WIX ist ein Tool zum Erstellen und zum Hosten von Webseiten. Wenn Sie unsere Website besuchen, werden mit Hilfe von WIX das Nutzerverhalten, die Besucherquellen, die Region der Websitebesucher und die Besucherzahlen analysiert. WIX speichert Cookies auf Ihrem Browser, die für die Darstellung der Website und zur Gewährleistung der Sicherheit erforderlich sind (notwendige Cookies).</p>
+        <p>Die Daten, die über WIX erfasst werden, können auf verschiedenen Servern weltweit gespeichert werden. Die Server von WIX stehen u. a. in den USA.</p>
+        <p>Details entnehmen Sie der Datenschutzerklärung von WIX: <a href="https://de.wix.com/about/privacy" target="_blank" rel="noopener noreferrer">https://de.wix.com/about/privacy</a>.</p>
+        <p>Die Datenübertragung in die USA und sonstige Drittstaaten wird laut WIX auf die Standardvertragsklauseln der EU-Kommission bzw. vergleichbare Garantien nach Art. 46 DSGVO gestützt. Details finden Sie hier: <a href="https://de.wix.com/about/privacy-dpa-users" target="_blank" rel="noopener noreferrer">https://de.wix.com/about/privacy-dpa-users</a>. Die Verwendung von WIX erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.</p>
+        <p>Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Weitere Informationen erhalten Sie vom Anbieter unter: <a href="https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt0000000GnbGAAS&status=Active" target="_blank" rel="noopener noreferrer">www.dataprivacyframework.gov</a>.</p>
+      </div>
+
+      <h3 class="ds-subheading">Externes Hosting</h3>
+      <div class="ds-body">
+        <p>Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
+        <p>Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).</p>
+        <p>Unser(e) Hoster wird bzw. werden Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.</p>
+        <div class="ds-callout">
+          <strong style="font-weight:500;color:var(--text)">Wir setzen folgenden Hoster ein:</strong><br><br>
+          Guesty Bookhost Ltd<br>
+          Kaplan Street No 2<br>
+          Tel Aviv-Yafo<br>
+          6473403 Israel
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section id="s3" class="ds-section">
+      <p class="ds-num">03</p>
+      <h2 class="ds-heading">Allgemeine Hinweise und Pflichtinformationen</h2>
+
+      <h3 class="ds-subheading">Datenschutz</h3>
+      <div class="ds-body">
+        <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+        <p>Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.</p>
+        <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+      </div>
+
+      <h3 class="ds-subheading">Hinweis zur verantwortlichen Stelle</h3>
+      <div class="ds-body">
+        <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+        <div class="ds-callout">
+          Leopards GmbH<br>
+          Am Schlangenberg 3<br>
+          45136 Essen<br><br>
+          Telefon: <a href="tel:+4917641880498">+49 (0) 176 41 880498</a><br>
+          E-Mail: <a href="mailto:leopardsgmbh@gmail.com">leopardsgmbh@gmail.com</a>
+        </div>
+        <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet.</p>
+      </div>
+
+      <h3 class="ds-subheading">Speicherdauer</h3>
+      <div class="ds-body">
+        <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall dieser Gründe.</p>
+      </div>
+
+      <h3 class="ds-subheading">Allgemeine Hinweise zu den Rechtsgrundlagen</h3>
+      <div class="ds-body">
+        <p>Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO.</p>
+        <p>Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen.</p>
+      </div>
+
+      <h3 class="ds-subheading">Empfänger von personenbezogenen Daten</h3>
+      <div class="ds-body">
+        <p>Im Rahmen unserer Geschäftstätigkeit arbeiten wir mit verschiedenen externen Stellen zusammen. Dabei ist teilweise auch eine Übermittlung von personenbezogenen Daten an diese externen Stellen erforderlich. Wir geben personenbezogene Daten nur dann an externe Stellen weiter, wenn dies im Rahmen einer Vertragserfüllung erforderlich ist, wenn wir gesetzlich hierzu verpflichtet sind, wenn wir ein berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO an der Weitergabe haben oder wenn eine sonstige Rechtsgrundlage die Datenweitergabe erlaubt.</p>
+      </div>
+
+      <h3 class="ds-subheading">Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
+      <div class="ds-body">
+        <p>Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
+      </div>
+
+      <h3 class="ds-subheading">Widerspruchsrecht (Art. 21 DSGVO)</h3>
+      <div class="uppercase-block">
+        WENN DIE DATENVERARBEITUNG AUF GRUNDLAGE VON ART. 6 ABS. 1 LIT. E ODER F DSGVO ERFOLGT, HABEN SIE JEDERZEIT DAS RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, GEGEN DIE VERARBEITUNG IHRER PERSONENBEZOGENEN DATEN WIDERSPRUCH EINZULEGEN; DIES GILT AUCH FÜR EIN AUF DIESE BESTIMMUNGEN GESTÜTZTES PROFILING. DIE JEWEILIGE RECHTSGRUNDLAGE, AUF DENEN EINE VERARBEITUNG BERUHT, ENTNEHMEN SIE DIESER DATENSCHUTZERKLÄRUNG. WENN SIE WIDERSPRUCH EINLEGEN, WERDEN WIR IHRE BETROFFENEN PERSONENBEZOGENEN DATEN NICHT MEHR VERARBEITEN, ES SEI DENN, WIR KÖNNEN ZWINGENDE SCHUTZWÜRDIGE GRÜNDE FÜR DIE VERARBEITUNG NACHWEISEN, DIE IHRE INTERESSEN, RECHTE UND FREIHEITEN ÜBERWIEGEN ODER DIE VERARBEITUNG DIENT DER GELTENDMACHUNG, AUSÜBUNG ODER VERTEIDIGUNG VON RECHTSANSPRÜCHEN (WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO).
+        <br><br>
+        WERDEN IHRE PERSONENBEZOGENEN DATEN VERARBEITET, UM DIREKTWERBUNG ZU BETREIBEN, SO HABEN SIE DAS RECHT, JEDERZEIT WIDERSPRUCH GEGEN DIE VERARBEITUNG SIE BETREFFENDER PERSONENBEZOGENER DATEN ZUM ZWECKE DERARTIGER WERBUNG EINZULEGEN; DIES GILT AUCH FÜR DAS PROFILING, SOWEIT ES MIT SOLCHER DIREKTWERBUNG IN VERBINDUNG STEHT. WENN SIE WIDERSPRECHEN, WERDEN IHRE PERSONENBEZOGENEN DATEN ANSCHLIESSEND NICHT MEHR ZUM ZWECKE DER DIREKTWERBUNG VERWENDET (WIDERSPRUCH NACH ART. 21 ABS. 2 DSGVO).
+      </div>
+
+      <h3 class="ds-subheading">Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
+      <div class="ds-body">
+        <p>Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.</p>
+      </div>
+
+      <h3 class="ds-subheading">Recht auf Datenübertragbarkeit</h3>
+      <div class="ds-body">
+        <p>Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.</p>
+      </div>
+
+      <h3 class="ds-subheading">Auskunft, Berichtigung und Löschung</h3>
+      <div class="ds-body">
+        <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.</p>
+      </div>
+
+      <h3 class="ds-subheading">Recht auf Einschränkung der Verarbeitung</h3>
+      <div class="ds-body">
+        <p>Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:</p>
+        <ul>
+          <li>Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung zu verlangen.</li>
+          <li>Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen.</li>
+          <li>Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung zu verlangen.</li>
+          <li>Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung zu verlangen.</li>
+        </ul>
+        <p>Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.</p>
+      </div>
+
+      <h3 class="ds-subheading">SSL- bzw. TLS-Verschlüsselung</h3>
+      <div class="ds-body">
+        <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile. Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.</p>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section id="s4" class="ds-section">
+      <p class="ds-num">04</p>
+      <h2 class="ds-heading">Datenerfassung auf dieser Website</h2>
+
+      <h3 class="ds-subheading">Server-Log-Dateien</h3>
+      <div class="ds-body">
+        <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
+        <ul>
+          <li>Browsertyp und Browserversion</li>
+          <li>verwendetes Betriebssystem</li>
+          <li>Referrer URL</li>
+          <li>Hostname des zugreifenden Rechners</li>
+          <li>Uhrzeit der Serveranfrage</li>
+          <li>IP-Adresse</li>
+        </ul>
+        <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
+        <p>Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website — hierzu müssen die Server-Log-Files erfasst werden.</p>
+      </div>
+
+      <h3 class="ds-subheading">Kontaktformular</h3>
+      <div class="ds-body">
+        <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+        <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.</p>
+        <p>Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen — insbesondere Aufbewahrungsfristen — bleiben unberührt.</p>
+      </div>
+
+      <h3 class="ds-subheading">Anfrage per E-Mail, Telefon oder Telefax</h3>
+      <div class="ds-body">
+        <p>Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+        <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+        <p>Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt. Zwingende gesetzliche Bestimmungen — insbesondere gesetzliche Aufbewahrungsfristen — bleiben unberührt.</p>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section id="s5" class="ds-section">
+      <p class="ds-num">05</p>
+      <h2 class="ds-heading">Plugins und Tools</h2>
+
+      <h3 class="ds-subheading">Google Maps</h3>
+      <div class="ds-body">
+        <p>Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4, Irland.</p>
+        <p>Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Wenn Google Maps aktiviert ist, kann Google zum Zwecke der einheitlichen Darstellung der Schriftarten Google Fonts verwenden.</p>
+        <p>Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG; die Einwilligung ist jederzeit widerrufbar.</p>
+        <p>Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier: <a href="https://privacy.google.com/businesses/gdprcontrollerterms/" target="_blank" rel="noopener noreferrer">privacy.google.com/businesses/gdprcontrollerterms/</a>.</p>
+        <p>Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a>.</p>
+        <p>Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Weitere Informationen erhalten Sie unter: <a href="https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active" target="_blank" rel="noopener noreferrer">www.dataprivacyframework.gov</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">HEIDE<span>14</span></div>
+    <p class="footer-copy">Heidestraße 14 · 48167 Münster · &copy; 2026</p>
+    <ul class="footer-links">
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
